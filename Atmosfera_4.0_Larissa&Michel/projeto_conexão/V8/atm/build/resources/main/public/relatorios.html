@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatórios | Atmosfera 4.0</title>
+
+   
+</head>
+
+<body>
+    <header>
+        <h1>Atmosfera 4.0</h1>
+        <p>Central de relatórios ambientais</p>
+    </header>
+
+    <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/robo.html">Simulador</a>
+        <a href="/relatorios.html">Relatórios</a>
+    </nav>
+
+    <main>
+        <section class="painel">
+            <h2>Exportar relatórios</h2>
+
+            <p>
+                Selecione o período desejado e escolha o formato
+                para exportar as medições armazenadas no banco de dados.
+            </p>
+
+            <label for="periodo">Período do relatório</label>
+
+            <select id="periodo">
+                <option value="semana">Últimos 7 dias</option>
+                <option value="24h">Últimas 24 horas</option>
+                <option value="20">Últimos 20 registros</option>
+            </select>
+
+            <div class="botoes">
+                <button class="csv" onclick="baixarRelatorio('csv')">
+                    Baixar relatório CSV
+                </button>
+
+                <button class="pdf" onclick="baixarRelatorio('pdf')">
+                    Baixar relatório PDF
+                </button>
+            </div>
+
+            <div class="informacao">
+                <strong>Sobre os relatórios</strong>
+                <p>
+                    O CSV pode ser aberto no Excel para análise dos dados.
+                    O PDF é indicado para leitura, impressão e documentação.
+                </p>
+                <p>
+                    Os arquivos são gerados a partir dos registros
+                    existentes no banco de dados Atmosfera 4.0.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Atmosfera 4.0 — Monitoramento e análise ambiental
+    </footer>
+
+    <script>
+        function baixarRelatorio(formato) {
+            const periodo = document.getElementById("periodo").value;
+
+            const url = "/api/relatorios/" + formato
+                      + "?periodo=" + encodeURIComponent(periodo);
+
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

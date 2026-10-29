@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a3a5c;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    position: relative;
+    display: flex;
+    height: 120px;
+    background-color: #102133;
+    align-items: center;
+    justify-content: space-between; /* Distribui logo na esquerda e nav na direita */
+    color: #fff;
+}
+
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+.logo-container p {
+    display: block;
+    text-align: center;
+    opacity: 0.6;
+    font-size: 14px;
+}  
+
+header img {
+    height: 60px;
+    width: 240px;
+}
+
+nav {
+    padding-right: 30px;
+    margin-top: 3%;
+}
+
+nav a{
+    margin-left: 20px;
+    color: #2b558b;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #4b78b4;
+}
+
+.card {
+    margin: 40px auto;
+    background-color: #1e4976;
+    border: 1px solid #a8ccdf;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    max-width: 700px;
+    min-height: 320px;
+}
+
+.card h2 {
+    padding-top: 5px;
+    text-align: center;
+    color: #a8ccdf;
+    font-size: 22px;
+}
+
+section p {
+    margin-top: 20px;
+}
+
+select {
+    height: 42px;
+    border-radius: 8px;
+    background-color: #bce0f3;
+    border: 1px solid #85abc0;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 16px;
+    color: #102133;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.botoes {
+    padding-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: #39ada4;
+    border: 1px solid #27756f;
+    color: #fff;
+    width: 25%;
+    height: 55px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #37928a;
+    color: #fff;
+}
+
+h2 {
+    text-align: center;
+    margin: 20px;
+    color: #a8ccdf;
+}
+
+.informacao {
+    margin-top: 4%;
+}
+
+.informacao p {
+    margin: 20px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+footer {
+    margin-top: auto;
+    opacity: 0.6;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #102133;
+}

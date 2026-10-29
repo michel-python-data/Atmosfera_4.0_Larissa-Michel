@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atmosfera 4.0 - Dashboard</title>
+    <!-- Folha de estilos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js para renderizar os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- CABEÇALHO SENAI -->
+    <header class="topbar">
+        <div class="logo-container">
+        <img src="img/senai_logo.png" alt="senai-logo">
+        <p>SENAI "Conectividade" - Vila Mariana</p>
+        </div>
+        <h1>ATMOSFERA 4.0</h1>
+    </header>
+
+    <main class="container">
+        <section>
+            <!-- 1. CARDS DE MÉTRICAS (KPIs) -->
+            <div class="cards">
+                <!-- Card 1: Temperatura -->
+                <div class="card1">
+                    <div class="card-header">
+                        <div>
+                            <p>Temperatura</p>
+                            <h2 id="lblTemp">-- °C</h2>
+                        </div>
+                        <div class="icone1">
+                            <img src="img/icone1.png" alt="Ícone Temperatura">
+                        </div>
+                    </div>
+                    <p class="p2">Média Campus</p>
+                </div>
+
+                <!-- Card 2: Umidade -->
+                <div class="card2">
+                    <div class="card-header">
+                        <div>
+                            <p>Umidade</p>
+                            <h2 id="lblUmid">-- %</h2>
+                        </div>
+                        <div class="icone2">
+                            <img src="img/icone2.png" alt="Ícone Umidade">
+                        </div>
+                    </div>
+                    <p class="p2">Média Campus</p>
+                </div>
+
+                <!-- Card 3: Pressão Atmosférica -->
+                <div class="card3">
+                    <div class="card-header">
+                        <div>
+                            <p>Pressão Atmosférica</p>
+                            <h2 id="lblPressao">-- hPa</h2>
+                        </div>
+                        <div class="icone3">
+                            <img src="img/icone3.png" alt="Ícone Pressão">
+                        </div>
+                    </div>
+                    <p class="p2">Média Campus</p>
+                </div>
+
+                <!-- Card 4: Total de Dispositivos -->
+                <div class="card4">
+                    <div class="card-header">
+                        <div>
+                            <p>Total de Dispositivos</p>
+                            <h2 id="lblTotalDisp">1</h2>
+                        </div>
+                        <div class="icone4">
+                            <img src="img/icone4.png" alt="Ícone Dispositivo">
+                        </div>
+                    </div>
+                    <p class="p2">Todos Online</p>
+                </div>
+            </div>
+
+            <!-- 2. PAINEL CENTRAL DE GRÁFICOS -->
+            <div class="painel-graficos">
+                <!-- Gráfico de Linhas (Temperatura x Umidade) -->
+                <div class="grafico">
+                    <div style="display: flex; justify-content: space-between; width: 100%; padding-right: 18px;">
+                        <p>Temperatura e Umidade (Média)</p>
+                        <p class="p2">Últimas 3 horas</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chartLinhas"></canvas>
+                    </div>
+                </div>
+
+                <!-- Medidor Semicircular de Sinal Wi-Fi -->
+                <div class="wifi">
+                    <p>Intensidade Wi-Fi</p>
+                    <div class="chart-container" style="height: 220px; margin-top: 10%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <canvas id="chartWifi"></canvas>
+                        <h3 id="txtWifiValor" style="color: #a4e4cf; margin-top: 10px;">--%</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. TABELA DE REGISTROS DO BANCO DE DADOS -->
+            <h2>Últimas Leituras Recebidas dos Dispositivos</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID Reg.</th>
+                        <th>ID Disp.</th>
+                        <th>Data/Hora</th>
+                        <th>Temp (°C)</th>
+                        <th>Umid (%)</th>
+                        <th>Pressão (hPa)</th>
+                        <th>Wi-Fi (dBm)</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaRegistros">
+                    <!-- Preenchido dinamicamente via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Lógica JavaScript do Dashboard -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

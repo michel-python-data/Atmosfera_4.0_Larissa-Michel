@@ -1,0 +1,136 @@
+-- Inicialização do Banco de Dados  
+DROP DATABASE IF EXISTS atmosfera_4_0;
+CREATE DATABASE atmosfera_4_0;
+USE atmosfera_4_0;
+
+-- Cria tabela dispositivos
+CREATE TABLE dispositivos ( 
+    id_dispositivos INT PRIMARY KEY AUTO_INCREMENT,
+    nome_dispositivos VARCHAR(100) NOT NULL, 
+    localizacao VARCHAR(100) NOT NULL, 
+    tipo_dispositivos VARCHAR(100) NOT NULL, 
+    gateway_pai_fk INT NULL,
+    FOREIGN KEY (gateway_pai_fk) REFERENCES dispositivos(id_dispositivos)
+); 
+
+-- Cria tabela atuadores
+CREATE TABLE atuadores ( 
+    id_atuador INT PRIMARY KEY AUTO_INCREMENT,
+    nome_atuador VARCHAR(100) NOT NULL, 
+    status_atual BOOLEAN NOT NULL, 
+    ultimo_comando DATETIME, 
+    id_dispositivo_fk INT NOT NULL,
+    FOREIGN KEY (id_dispositivo_fk) REFERENCES dispositivos(id_dispositivos)
+); 
+
+-- Cria tabela registros
+CREATE TABLE registros ( 
+    id_registro BIGINT PRIMARY KEY AUTO_INCREMENT,
+    time_stamp TIMESTAMP NOT NULL, -- Horário da medição no dispositivo
+    data_hora DATETIME DEFAULT NOW(), -- Horário do recebimento no servidor
+    temperatura FLOAT,
+    umidade FLOAT,
+    pressao FLOAT,
+    altitude FLOAT,
+    luminosidade FLOAT,
+    velocidade_vento FLOAT,
+    direcao_vento INT,
+    intensidade_wifi INT,
+    id_dispositivo_fk INT NOT NULL,
+    FOREIGN KEY (id_dispositivo_fk) REFERENCES dispositivos(id_dispositivos)
+);
+
+-- ========================================================= 
+-- INSERÇÃO DE DADOS DE TESTE (3 registros por tabela) 
+-- ========================================================= 
+
+-- 1. Inserção na tabela DISPOSITIVOS 
+-- PASSO A: Insere primeiro o Gateway Master para gerar o ID 1 obrigatoriamente
+INSERT INTO dispositivos (nome_dispositivos, localizacao, tipo_dispositivos, gateway_pai_fk) VALUES 
+('Gateway Central ESP32', '-23.591301, -46.645369', 'Gateway Master', NULL);
+
+-- PASSO B: Agora insere os dispositivos filhos referenciando o ID 1 que já existe
+INSERT INTO dispositivos (nome_dispositivos, localizacao, tipo_dispositivos, gateway_pai_fk) VALUES 
+('Estação Climática Externa', '-23.591567, -46.644854', 'Módulo de Sensores', 1), 
+('Sensor de Vento e Pressão', '23.591102, -46.644856', 'Módulo Anemômetro', 1); 
+
+-- 2. Inserção na tabela ATUADORES 
+INSERT INTO atuadores (nome_atuador, status_atual, ultimo_comando, id_dispositivo_fk) VALUES 
+('LED_1', TRUE, '2026-10-06 08:00:00', 2), 
+('LED_2', FALSE, '2026-10-05 18:30:00', 1), 
+('LED_3', TRUE, '2026-10-06 07:15:00', 3), 
+('LED_4', TRUE, '2026-10-06 09:22:00', 3); 
+
+-- 3. Inserção na tabela -- Inicialização do Banco de Dados  
+DROP DATABASE IF EXISTS atmosfera_4_0;
+CREATE DATABASE atmosfera_4_0;
+USE atmosfera_4_0;
+
+-- Cria tabela dispositivos
+CREATE TABLE dispositivos ( 
+    id_dispositivos INT PRIMARY KEY AUTO_INCREMENT,
+    nome_dispositivos VARCHAR(100) NOT NULL, 
+    localizacao VARCHAR(100) NOT NULL, 
+    tipo_dispositivos VARCHAR(100) NOT NULL, 
+    gateway_pai_fk INT NULL,
+    FOREIGN KEY (gateway_pai_fk) REFERENCES dispositivos(id_dispositivos)
+); 
+
+-- Cria tabela atuadores
+CREATE TABLE atuadores ( 
+    id_atuador INT PRIMARY KEY AUTO_INCREMENT,
+    nome_atuador VARCHAR(100) NOT NULL, 
+    status_atual BOOLEAN NOT NULL, 
+    ultimo_comando DATETIME, 
+    id_dispositivo_fk INT NOT NULL,
+    FOREIGN KEY (id_dispositivo_fk) REFERENCES dispositivos(id_dispositivos)
+); 
+
+-- Cria tabela registros
+CREATE TABLE registros ( 
+    id_registro BIGINT PRIMARY KEY AUTO_INCREMENT,
+    time_stamp TIMESTAMP NOT NULL, -- Horário da medição no dispositivo
+    data_hora DATETIME DEFAULT NOW(), -- Horário do recebimento no servidor
+    temperatura FLOAT,
+    umidade FLOAT,
+    pressao FLOAT,
+    altitude FLOAT,
+    luminosidade FLOAT,
+    velocidade_vento FLOAT,
+    direcao_vento INT,
+    intensidade_wifi INT,
+    id_dispositivo_fk INT NOT NULL,
+    FOREIGN KEY (id_dispositivo_fk) REFERENCES dispositivos(id_dispositivos)
+);
+
+-- ========================================================= 
+-- INSERÇÃO DE DADOS DE TESTE (3 registros por tabela) 
+-- ========================================================= 
+
+-- 1. Inserção na tabela DISPOSITIVOS 
+-- PASSO A: Insere primeiro o Gateway Master para gerar o ID 1 obrigatoriamente
+INSERT INTO dispositivos (nome_dispositivos, localizacao, tipo_dispositivos, gateway_pai_fk) VALUES 
+('Gateway Central ESP32', '-23.591301, -46.645369', 'Gateway Master', NULL);
+
+-- PASSO B: Agora insere os dispositivos filhos referenciando o ID 1 que já existe
+INSERT INTO dispositivos (nome_dispositivos, localizacao, tipo_dispositivos, gateway_pai_fk) VALUES 
+('Estação Climática Externa', '-23.591567, -46.644854', 'Módulo de Sensores', 1), 
+('Sensor de Vento e Pressão', '23.591102, -46.644856', 'Módulo Anemômetro', 1); 
+
+-- 2. Inserção na tabela ATUADORES 
+INSERT INTO atuadores (nome_atuador, status_atual, ultimo_comando, id_dispositivo_fk) VALUES 
+('LED_1', TRUE, '2026-10-06 08:00:00', 2), 
+('LED_2', FALSE, '2026-10-05 18:30:00', 1), 
+('LED_3', TRUE, '2026-10-06 07:15:00', 3), 
+('LED_4', TRUE, '2026-10-06 09:22:00', 3); 
+
+-- 3. Inserção na tabela REGISTROS 
+INSERT INTO registros (time_stamp, temperatura, umidade, pressao, altitude, luminosidade, velocidade_vento, direcao_vento, intensidade_wifi, id_dispositivo_fk) VALUES 
+('2026-10-06 09:00:00', 24.5, 65.0, 1013.2, 760.0, 850.0, 10.2, 180, -62, 1), 
+('2026-10-06 09:05:00', 25.1, 62.5, 1012.8, 760.0, 920.0, 14.8, 195, -70, 2), 
+('2026-10-06 09:10:00', 23.8, 68.0, 1013.5, 760.0, 780.0, 18.5, 210, -58, 3);
+
+INSERT INTO registros (time_stamp, temperatura, umidade, pressao, altitude, luminosidade, velocidade_vento, direcao_vento, intensidade_wifi, id_dispositivo_fk) VALUES 
+('2026-10-06 09:00:00', 24.5, 65.0, 1013.2, 760.0, 850.0, 10.2, 180, -62, 1), 
+('2026-10-06 09:05:00', 25.1, 62.5, 1012.8, 760.0, 920.0, 14.8, 195, -70, 2), 
+('2026-10-06 09:10:00', 23.8, 68.0, 1013.5, 760.0, 780.0, 18.5, 210, -58, 3);

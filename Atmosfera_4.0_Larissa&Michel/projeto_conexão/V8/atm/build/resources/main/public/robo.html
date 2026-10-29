@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atmosfera 4.0 - Simulador IoT (Robô)</title>
+    <link rel="stylesheet" href="css/style_painel.css">
+</head>
+<body>
+    <header class="topbar">
+                <div class="logo-container">
+        <img src="img/senai_logo.png" alt="senai-logo">
+        <p>SENAI "Conectividade" - Vila Mariana</p>
+        </div>
+        <h1>ATMOSFERA 4.0</h1>
+    </header>
+
+    <div class="container">
+        <div class="grid-2">
+            <!-- Configuração -->
+            <section class="card">
+                <h2>CONFIGURAÇÃO DO DISPOSITIVO SIMULADO</h2>
+                <div class="form-group">
+                    <label>ID do Dispositivo (DB):</label>
+                    <input type="number" id="dispositivoId" value="1">
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Temp. Mín (°C):</label>
+                        <input type="number" id="tempMin" value="18">
+                    </div>
+                    <div>
+                        <label>Temp. Máx (°C):</label>
+                        <input type="number" id="tempMax" value="32">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Umid. Mín (%):</label>
+                        <input type="number" id="umidMin" value="40">
+                    </div>
+                    <div>
+                        <label>Umid. Máx (%):</label>
+                        <input type="number" id="umidMax" value="85">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Frequência de Envio (segundos):</label>
+                    <input type="number" id="frequencia" value="5">
+                </div>
+            </section>
+
+            <!-- Status do último envio -->
+            <section class="card">
+                <h2>DETALHES DO ÚLTIMO REGISTRO ENVIADO</h2>
+                <div class="datahora">
+                    <p><strong>Data Envio:</strong> <span id="lblData">--/--/----</span></p>
+                    <p><strong>Hora Envio:</strong> <span id="lblHora">--:--:--</span></p>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <span>Temperatura</span>
+                        <h3 id="lblTemp">-- °C</h3>
+                    </div>
+                    <div class="metric-box">
+                        <span>Umidade</span>
+                        <h3 id="lblUmid">-- %</h3>
+                    </div>
+                    <div class="metric-box">
+                        <span>Pressão</span>
+                        <h3 id="lblPressao">-- hPa</h3>
+                    </div>
+                    <div class="metric-box">
+                        <span>Sinal Wi-Fi</span>
+                        <h3 id="lblWifi">-- dBm</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="btn-group">
+            <button id="btnIniciar" class="btn-start" onclick="iniciarSimulacao()">▷ INICIAR SIMULAÇÃO</button>
+            <button id="btnParar" class="btn-stop" onclick="pararSimulacao()" disabled>⏹ PARAR SIMULAÇÃO</button>
+        </div>
+    </div>
+
+    <script src="js/robo.js"></script>
+</body>
+</html>
